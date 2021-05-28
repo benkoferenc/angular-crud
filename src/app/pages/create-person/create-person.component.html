@@ -1,0 +1,36 @@
+<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+    <h4>Add a new Person</h4>
+
+    <mat-form-field class="max-width">
+        <mat-label>Given name</mat-label>
+        <input matInput type="text" name="given" placeholder="e.g Gabe" formControlName="given">
+    </mat-form-field>
+
+    <mat-form-field class="max-width">
+        <mat-label>Family name</mat-label>
+        <input matInput type="text" name="family" placeholder="e.g Itches" formControlName="family">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="male">'male'</mat-option>
+          <mat-option value="female">'female'</mat-option>
+          <mat-option value="other">'other'</mat-option>
+          <mat-option value="unknown">'unknown'</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Birth date</mat-label>
+        <input matInput type="date" name="birthDate" formControlName="birthDate">
+    </mat-form-field>
+    
+
+      <div style="display: flex; justify-content: flex-end;">
+        <button mat-button onClick="window.location.reload();" class="margin-right">Reset</button>
+        <button mat-button [disabled]="personForm.invalid">Add</button>
+      </div>
+
+</form>

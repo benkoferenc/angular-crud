@@ -32,6 +32,9 @@
       true,
       140
     ],
+    "max-file-line-count": [
+      true, 250
+    ],
     "member-ordering": [
       true,
       {

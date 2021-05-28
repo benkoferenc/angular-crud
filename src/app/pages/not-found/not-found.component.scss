@@ -1,0 +1,44 @@
+.center {
+
+    position: relative;
+  
+    height: 40vh;
+  
+    background: peachpuff;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+  
+  }
+  
+  .center mat-card-title {
+  
+    position: absolute;
+    
+    font-size: 5.5vmin;
+  
+    top: 40%;
+  
+    left: 50%;
+  
+    transform: translate(-50%, -50%);
+  
+    margin: 0;
+  
+  }
+  .center mat-card-subtitle {
+  
+    position: absolute;
+
+    font-size: 3.5vmin;
+  
+    top: 60%;
+  
+    left: 50%;
+  
+    transform: translate(-50%, -50%);
+  
+    margin: 0;
+  
+  }

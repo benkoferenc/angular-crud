@@ -13,6 +13,8 @@ import { ListPersonModule } from './pages/list-person/list-person.module';
 import { HomeModule } from './pages/home/home.module';
 import { NotFoundModule } from './pages/not-found/not-found.module';
 import { ResponsiveToolbarModule } from './pages/responsive-toolbar/responsive-toolbar.module';
+import { UpdatePersonModule } from './pages/update-person/update-person.module';
+import { DeletePersonModule } from './pages/delete-person/delete-person.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ResponsiveToolbarModule } from './pages/responsive-toolbar/responsive-t
     HomeModule,
     NotFoundModule,
     ResponsiveToolbarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UpdatePersonModule,
+    DeletePersonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

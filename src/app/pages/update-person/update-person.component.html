@@ -1,5 +1,5 @@
 <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
-    <h4>Add a new Person</h4>
+    <h4>Update an existing Person</h4>
 
     <mat-form-field class="max-width" appearance="fill">
         <mat-label>Given name</mat-label>
@@ -14,10 +14,10 @@
     <mat-form-field appearance="fill">
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender">
-          <mat-option value="male">male</mat-option>
-          <mat-option value="female">female</mat-option>
-          <mat-option value="other">other</mat-option>
-          <mat-option value="unknown">unknown</mat-option>
+          <mat-option value="male">'male'</mat-option>
+          <mat-option value="female">'female'</mat-option>
+          <mat-option value="other">'other'</mat-option>
+          <mat-option value="unknown">'unknown'</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -26,21 +26,12 @@
         <input matInput type="date" name="birthDate" formControlName="birthDate">
     </mat-form-field>
 
+    <div style="display: flex; justify-content: flex-end;">
+        <button mat-raised-button (click)="dialogRef.close()"color="primary">Bezárás</button>
+      </div>
+
       <div style="display: flex; justify-content: flex-end;">
-        <button mat-raised-button color="primary" onClick="window.location.reload();" class="margin-right">Reset</button>
-        <button mat-raised-button color="primary" [disabled]="personForm.invalid">Add</button>
+        <button mat-raised-button (click)="update=true" (click)="dialogRef.close()" color="primary" [disabled]="personForm.invalid">Update</button>
       </div>
 
 </form>
-
-<h4>
-  Lekérdezések:
-</h4>
-
-<mat-label>
-  1980 után született személyek száma: {{youngPeople.length}}
-</mat-label>
-<br>
-<mat-label>
-  Ismeretlen nemű személyek száma: {{unknownGenderPeople.length}}
-</mat-label>

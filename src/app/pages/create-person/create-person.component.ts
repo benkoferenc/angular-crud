@@ -12,6 +12,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class CreatePersonComponent implements OnInit {
   public personForm: FormGroup;
+  youngPeople: any[] = [];
+  unknownGenderPeople: any[] = [];
 
   constructor(
     private afs: AngularFirestore,
@@ -28,6 +30,8 @@ export class CreatePersonComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.queryYoung();
+    this.queryUnknown();
   }
 
   onSubmit() {
@@ -53,12 +57,29 @@ export class CreatePersonComponent implements OnInit {
       }) 
     }
   }
-/*
-  savePerson(): void {
-    this.personService.createPerson(this.person).then(() => {
-      console.log('Created new item successfully!');
-      this.submitted = true;
-    });
-  }*/
 
+  queryYoung() {
+    this.youngPeople = [];
+    this.afs.collection('PersonCollection', ref => ref.where('birthDate', '>', '1980').orderBy('birthDate', 'asc').orderBy('id', 'desc'))
+    .get().subscribe(res => {
+      res.docs.forEach(e1 => {
+        this.youngPeople.push(e1.data());
+      })
+    }, error => {
+      console.log('kiolvasási hiba', error);
+    })
+  }
+
+  queryUnknown() {
+    this.unknownGenderPeople = [];
+    this.afs.collection('PersonCollection', ref => ref.where('gender', '==', 'unknown').orderBy('id', 'desc'))
+    .get().subscribe(res => {
+      res.docs.forEach(e1 => {
+        console.log(e1.data)
+        this.unknownGenderPeople.push(e1.data());
+      })
+    }, error => {
+      console.log('kiolvasási hiba', error);
+    })
+  }
 }

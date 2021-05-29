@@ -1,23 +1,61 @@
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Contact</th>
-        <th scope="col">Action </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let person of Persons; let i = index">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ person.name }}</td>
-        <td>{{ person.gender }}</td>
-        <td>{{ person.birthDate }}</td>
-        <td>
-          <!---<span (click)="removePerson(person)" class="text-danger">Delete</span> &nbsp;
-          <span routerLink="/update-person/{{person.id}}" class="text-primary">Edit</span>--->
+<div class="example-container">
+
+    <table mat-table [dataSource]="dataSource" class="animate">
+
+      <ng-container matColumnDef="Given name">
+        <th mat-header-cell *matHeaderCellDef> Given name </th>
+        <td mat-cell *matCellDef="let person"> {{person.name[0].given}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Family name">
+        <th mat-header-cell *matHeaderCellDef> Family name </th>
+        <td mat-cell *matCellDef="let person"> {{person.name[0].family}} </td>
+      </ng-container>
+
+      <!-- Ez az ngIf nem akar működni, de bennehagytam, mivel elég sokat szenvedtem vele -->
+      <div *ngIf="person?.gender === 'male'">
+        <ng-container matColumnDef="Gender">
+          <th mat-header-cell *matHeaderCellDef> Gender </th>
+          <td mat-cell bgcolor="lightblue" *matCellDef="let person"> {{person.gender}} </td>
+        </ng-container>
+      </div>
+
+      <div *ngIf="person?.gender === 'female'; else defaultTemplate">
+        <ng-container matColumnDef="Gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell bgcolor="#ffcccb" *matCellDef="let person"> {{person.gender}} </td>
+      </ng-container>
+    </div>
+
+    <ng-template #defaultTemplate>
+      <ng-container matColumnDef="Gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let person"> {{person.gender}} </td>
+      </ng-container>
+    </ng-template>
+    
+      <ng-container matColumnDef="Birthdate">
+        <th mat-header-cell *matHeaderCellDef> Birthdate </th>
+        <td mat-cell *matCellDef="let person"> {{person.birthDate}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Update">
+        <th mat-header-cell *matHeaderCellDef> Update </th>
+        <td mat-cell *matCellDef="let person">
+          <button mat-raised-button color="primary" (click)="openDialog(person)">Update</button>
         </td>
-      </tr>
-    </tbody>
-  </table>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let person">
+          <button mat-raised-button color="warn" (click)="openDeleteDialog(person)">Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

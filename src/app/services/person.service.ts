@@ -43,7 +43,7 @@ export class PersonService<T extends { id?: string }> {
   } */
 
   async createPerson(collectionName: string, person: T): Promise<T> {
-    await this.afs.collection(collectionName).add(person);
+    await this.afs.collection(collectionName).doc(person.id).set(person);
     return person;
   }
 

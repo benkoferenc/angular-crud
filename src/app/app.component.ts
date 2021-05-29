@@ -13,25 +13,6 @@ export class AppComponent {
   title = 'person-firebase-crud';
   person: Person;
 
-  saveData() {
-    this.afs.collection('PersonCollection').add(this.person).then(res => {
-      console.log('mentes sikeres', res);
-    }).catch(error => {
-      console.log('error', error);
-    })
-  }
-
-  readData() {
-    this.afs.collection('PersonCollection', ref => ref.where('birthDate', '<', '1980').orderBy('birthDate', 'asc').orderBy('id', 'desc'))
-    .get().subscribe(res => {
-      res.docs.forEach(e1 => {
-        console.log(e1.data());
-      })
-    }, error => {
-      console.log('kiolvasási hiba', error);
-    })
-  }
-
   constructor(private afs: AngularFirestore) {
     this.person = {
       "resourceType": "Person",

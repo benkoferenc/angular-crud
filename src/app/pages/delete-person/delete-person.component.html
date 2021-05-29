@@ -1,0 +1,13 @@
+<form (ngSubmit)="onSubmitDelete(data)">
+    <h4>Do you want to delete this person?</h4>
+    <h5>This action can not be undone.</h5>
+
+    <div style="display: flex; justify-content: flex-end;">
+        <button mat-raised-button id="delete" (click)="deleteDialog.close()"color="warn">No</button>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end;">
+        <button mat-raised-button (click)="delete=true" (click)="deleteDialog.close()" color="primary">Yes</button>
+      </div>
+
+</form>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PersonService } from 'src/app/services/person.service';
 import { HumanName, Person } from 'src/app/shared/person.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
@@ -19,7 +19,8 @@ export class CreatePersonComponent implements OnInit {
     private afs: AngularFirestore,
     public personService: PersonService<Person>,
     public formBuilder: FormBuilder,
-    public router: Router) {
+    public router: Router,
+    private route: ActivatedRoute) {
       this.personForm = this.formBuilder.group({
         family: new FormControl('', Validators.required),
         given: new FormControl('', Validators.required),
@@ -82,4 +83,5 @@ export class CreatePersonComponent implements OnInit {
       console.log('kiolvasási hiba', error);
     })
   }
+
 }

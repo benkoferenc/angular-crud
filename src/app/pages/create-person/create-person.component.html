@@ -27,8 +27,8 @@
     </mat-form-field>
 
       <div style="display: flex; justify-content: flex-end;">
-        <button mat-raised-button color="primary" onClick="window.location.reload();" class="margin-right">Reset</button>
-        <button mat-raised-button color="primary" [disabled]="personForm.invalid">Add</button>
+        <button mat-raised-button color="primary" class="margin-right" type="reset">Reset</button>
+        <button mat-raised-button color="primary" [disabled]="personForm.invalid" type="submit">Add</button>
       </div>
 
 </form>
